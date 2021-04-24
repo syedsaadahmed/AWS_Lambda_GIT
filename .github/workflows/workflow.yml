@@ -40,19 +40,19 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: us-east-1
 #     # Build using SAM 
-    - name: SAM Build
-      uses: youyo/aws-sam-action/python3.8@master
-      with:
-        sam_command: build
-      env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION:  us-east-1
+#     - name: SAM Build
+#       uses: youyo/aws-sam-action/python3.8@master
+#       with:
+#         sam_command: build
+#       env:
+#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           AWS_DEFAULT_REGION:  us-east-1
     # Deploy on AWS
     - name: sam deploy
       uses: youyo/aws-sam-action/python3.8@master
       with:
-          sam_command: 'deploy --stack-name myApp --no-fail-on-empty-changeset'
+          sam_command: 'deploy -y --stack-name myApp --no-fail-on-empty-changeset'
       env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
